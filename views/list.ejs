@@ -1,0 +1,37 @@
+<%- include("header")-%>
+    <div class="box" id="heading">
+        <h1><%=  listTitle %></h1>
+    </div>
+        
+    <div class="box">
+      
+            <!-- <%for (let index = 0; index < yourinput.length; index++) {%>
+                
+                <div class="item">
+                    <input type="checkbox">
+                    <p><%=yourinput[index].name%></p>
+                </div>    
+                
+            
+            <%}%> -->
+            <%yourinput.forEach(element=> {%>
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input type="checkbox" name="checkbox" value="<%=element._id%>" onchange="this.form.submit()"><!--Here item._id gives us id of the list which is checked which can further be used to delete the data--> 
+                        <p><%=element.name%></p>
+                        <input type="hidden" name="listName" value="<%=listTitle%>"></input> <!--This is hidden input we just using it to get title name so  we can delete it  further--> 
+                    </div>  
+                </form>
+                  
+                
+            
+            <%});%>
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+                <button type="submit" name="list" value=<%= listTitle %> >+</button>
+            </form> 
+    </div>
+
+<%- include("footer")-%>
+        
+        
